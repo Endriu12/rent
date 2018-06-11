@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Дизлокації військових частин</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body ng-app = "demo">
+<div class="container" ng-controller = "DislocationCtrl as dislocationCtrl">
+    <div id="dropdownWrapper">
+        <div class="dropdown">
+            <button class="dropbtn" style="margin-left: 0">Запити</button>
+            <div style="min-width: 700px;" class="dropdown-content">
+                <a href="" data-toggle="modal" data-target="#selectByBase">Перелік місць дизлокації для вказаної військової частини</a>
+                <a href="" data-toggle="modal" data-target="#selectByArmy">Перелік місць дизлокації для вказаної армії</a>
+                <a href="" data-toggle="modal" data-target="#selectByDivision">Перелік місць дизлокації для вказаної дивізії</a>
+                <a href="" data-toggle="modal" data-target="#selectByCorps">Перелік місць дизлокації для вказаного корпусу</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Дизлокації частин</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Військова частина</th>
+                            <th>Місце дизлокації</th>
+                            <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">+</button></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr ng-repeat = "item in dislocation">
+                            <td>{{item.militaryBase.name}}</td>
+                            <td>{{item.dislocation.name}}</td>
+                            <td>
+                                <button id="update" ng-click="dislocationCtrl.startUpdate(item.id, item.militaryBase.id, item.dislocation.id)" class="btn-warning" data-toggle="modal" data-target="#editModal">✎</button>
+                                <button id="delete" ng-click="dislocationCtrl.del(item.id)" class="btn-danger">✘</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="btnWrapper"><a href="main.html" class="button">Головна сторінка</a></div>
+    <!-- Додавання армії -->
+    <div id="addModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Додавання</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectBase" title="Військова частина"></select><br>
+                    <select id="selectDislocation" title="Місце дизлокації"></select>
+
+                </div>
+                <div class="modal-footer">
+                    <button class = "btn btn-default" id="createArmyButton" ng-click="dislocationCtrl.create()">Створити</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Редагування армії -->
+    <div id="editModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Редагування</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="updSelectBase" title="Військова частина"></select><br>
+                    <select id="updSelectDislocation" title="Місце дизлокації"></select>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="editArmyButton" ng-click="dislocationCtrl.update()">Змінити</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="selectByBase" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір частини</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectBaseQuery" title="Військова частина"></select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectBaseQueryBtn" ng-click="dislocationCtrl.selectByBase()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByArmy" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір армії</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectArmyQuery" title="Армія"></select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByArmyBtn" ng-click="dislocationCtrl.selectByArmy()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByDivision" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір дивізії</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectDivisionQuery" title="Дивізія"></select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByDivisionBtn" ng-click="dislocationCtrl.selectByDivision()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByCorps" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір корпусу</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectCorpsQuery" title="Корпус"></select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByCorpsBtn" ng-click="dislocationCtrl.selectByCorps()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/motorcycle.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/bicycle.js"></script>
+
+
+
+
+</body>
+</html>

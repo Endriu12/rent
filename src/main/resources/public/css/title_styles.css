@@ -1,0 +1,20 @@
+#header{
+    background-color: #c45f3c;
+    width: 480px;
+    height: 50px;
+    font: 16px Arial;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#header a{
+    text-decoration: none;
+    color: #fff;
+}
+
+#header a:hover{
+    color: #cacaca
+}
+

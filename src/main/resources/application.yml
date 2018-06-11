@@ -6,8 +6,11 @@ spring:
     password: root
   jpa:
       show-sql: true
+      format-sql: true
       hibernate:
-        ddl-auto: create
+        ddl-auto: update
       properties:
         hibernate:
           dialect: org.hibernate.dialect.PostgreSQL94Dialect
+server:
+  port: 8087

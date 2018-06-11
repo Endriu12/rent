@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Озброєння у військових частинах</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body ng-app = "demo">
+<div class="container" ng-controller = "WeaponryInMbaseCtrl as weaponryInMbaseCtrl">
+    <div id="dropdownWrapper">
+        <div class="dropdown">
+            <button class="dropbtn" style="margin-left: 0">Запити</button>
+            <div style="min-width: 700px;" class="dropdown-content">
+                <a href="" data-toggle="modal" data-target="#selectByType">Перелік озброєння вказаного типу загалом</a>
+                <a href="" data-toggle="modal" data-target="#selectByBaseAndType">Перелік озброєння вказаного типу у вказаній частині</a>
+                <a href="" data-toggle="modal" data-target="#selectByArmyAndType">Перелік озброєння вказаного типу у вказаній армії</a>
+                <a href="" data-toggle="modal" data-target="#selectByDivisionAndType">Перелік озброєння вказаного типу у вказаній дивізії</a>
+                <a href="" data-toggle="modal" data-target="#selectByCorpsAndType">Перелік озброєння вказаного типу у вказаному корпусі</a>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Озброєння у військових частинах</div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Військова частина</th>
+                            <th>Озброєння</th>
+                            <th>Кількість</th>
+                            <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal"
+                                                     ng-click="contestInPalaceCtrl.startCreateWeaponryInMbase()">Створити</button></th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr ng-repeat = "item in weaponry">
+                            <td>{{item.militaryBase.name}}</td>
+                            <td>{{item.weaponry.name}}</td>
+                            <td>{{item.amount}}</td>
+                            <td>
+                                <button id="update" ng-click="weaponryInMbaseCtrl.startUpdate(item.id, item.militaryBase.id, item.weaponry.id, item.amount)" class="btn-warning" data-toggle="modal" data-target="#editModal">✎</button>
+                                <button id="delete" ng-click="weaponryInMbaseCtrl.del(item.id)" class="btn-danger">✘</button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="btnWrapper"><a href="main.html" class="button">Головна сторінка</a></div>
+    <!-- Додавання озброєння -->
+    <div id="addModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Додавання</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Військова частина: </label> <br>
+                    <select id="militaryBase"></select> <br>
+                    <label>Озброєння: </label> <br>
+                    <select id="weaponry"></select> <br>
+                    <label>Кількість: </label>
+                    <input type="number" width="20px" min="1" id="amount"/><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" id="createWeaponryInMbase" ng-click="weaponryInMbaseCtrl.createWeaponryInMbase()">Створити</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Редагування озброєння -->
+    <div id="editModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Редагування</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Військова частина: </label> <br>
+                    <select id="updMilitaryBase"></select> <br>
+                    <label>Озброєння: </label> <br>
+                    <select id="updWeaponry"></select> <br>
+                    <label>Кількість: </label>
+                    <input type="number" width="20px" min="1" id="updAmount"/><br>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="updateWeaponryInMbaseButton" ng-click="weaponryInMbaseCtrl.update()">Змінити</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div id="selectByType" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір типу</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectType" title="Тип озброєння">
+                        <option>Карабін</option>
+                        <option>Автомат</option>
+                        <option>Артилерія</option>
+                        <option>Ракети</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByTypeBtn" ng-click="weaponryInMbaseCtrl.selectByType()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByBaseAndType" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір типу і частини</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectBase" title="Військова частина">
+
+                    </select>
+                    <select id="selectTypeBaseAndType" title="Тип озброєння">
+                        <option>Карабін</option>
+                        <option>Автомат</option>
+                        <option>Артилерія</option>
+                        <option>Ракети</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectTypeBaseAndTypeBtn" ng-click="weaponryInMbaseCtrl.selectByBaseAndType()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByArmyAndType" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір типу і армії</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectArmy" title="Армія">
+
+                    </select>
+                    <select id="selectTypeArmyAndType" title="Тип озброєння">
+                        <option>Карабін</option>
+                        <option>Автомат</option>
+                        <option>Артилерія</option>
+                        <option>Ракети</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByArmyAndTypeBtn" ng-click="weaponryInMbaseCtrl.selectByArmyAndType()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByDivisionAndType" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір типу і дивізії</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectDivision" title="Дивізія">
+
+                    </select>
+                    <select id="selectTypeDivisionAndType" title="Тип озброєння">
+                        <option>Карабін</option>
+                        <option>Автомат</option>
+                        <option>Артилерія</option>
+                        <option>Ракети</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByDivisionAndTypeBtn" ng-click="weaponryInMbaseCtrl.selectByDivisionAndType()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="selectByCorpsAndType" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Вибір типу і корпусу</h4>
+                </div>
+                <div class="modal-body">
+                    <select id="selectCorps" title="Корпус">
+
+                    </select>
+                    <select id="selectTypeCorpsAndType" title="Тип озброєння">
+                        <option>Карабін</option>
+                        <option>Автомат</option>
+                        <option>Артилерія</option>
+                        <option>Ракети</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="selectByCorpsAndTypeBtn" ng-click="weaponryInMbaseCtrl.selectByCorpsAndType()" data-dismiss="modal">Вивести</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/motorcycle.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/weaponry_in_mbase.js"></script>
+
+</body>
+</html>

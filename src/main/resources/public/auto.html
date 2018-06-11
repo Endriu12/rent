@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Автомобілі</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body ng-app="demo">
+<div class="container" ng-controller="AutoCtrl as autoCtrl">
+    <div class="row">
+        <div class="col-md12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Автомобілі<br></div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>&#128273ІД</th>
+                            <th>Назва</th>
+                            <th>Опис</th>
+                            <th>Ціна</th>
+                            <th>Нова</th>
+                            <th>Доступна</th>
+                            <th>Ціна за годину</th>
+                            <th>Назва компанії</th>
+                            <th width="30px">
+                                <button type="button" class="btn-success" data-toggle="modal"
+                                        data-target="#addModal" style="align-self:center">Створити
+                                </button>
+                            </th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr ng-repeat="item in autos">
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.description}}</td>
+                            <td>{{item.rentPrice}}</td>
+                            <td>{{item.isNew}}</td>
+                            <td>{{item.isAvailable}}</td>
+                            <td>{{item.hours}}</td>
+                            <td>{{item.company.name}}</td>
+                            <td>
+                                <button id="update" ng-click="autoCtrl.startUpdateArmy(item.id, item.name, item.description,
+                                item.rentPrice, item.isNew, item.isAvailable, item.hours, item.company)"
+                                        class="btn-warning" data-toggle="modal" data-target="#editModal">✎
+                                </button>
+                                <button id="delete" ng-click="autoCtrl.deleteAuto(item.id)" class="btn-danger">✘
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="btnWrapper"><a href="main.html" class="button">Головна сторінка</a></div>
+    <!-- Додавання армії -->
+    <div id="addModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Додавання</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Назва машини:</label>
+                    <input type="text" id="autoName" name="autoName"/> <br>
+                    <label>Опис:</label>
+                    <input type="text" id="autoDescription" name="autoDescription"/>
+
+                    <label>Ціна:</label>
+                    <input type="text" id="autoPrice" name="autoPrice"/> <br>
+                    <label>Нова чи ні:</label>
+                    <input type="text" id="isAv" name="isAv"/>
+
+
+                    <label>Доступна ? </label>
+                    <input type="text" id="isD" name="isD"/> <br>
+                    <label>Ціна за годину:</label>
+                    <input type="text" id="autoPH" name="autoPH"/>
+                    <label>Назва компанії:</label>
+                    <input type="text" id="autoNC" name="autoNC"/> <br>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="createArmyButton" ng-click="autoCtrl.createAuto()">Створити
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Редагування армії -->
+    <div id="editModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Редагування</h4>
+                </div>
+                <div class="modal-body">
+                    <label>Назва машини:</label>
+                    <input type="text" id="autoName" name="autoName"/> <br>
+                    <label>Опис:</label>
+                    <input type="text" id="autoDescription" name="autoDescription"/>
+
+                    <label>Ціна:</label>
+                    <input type="text" id="autoPrice" name="autoPrice"/> <br>
+                    <label>Нова чи ні:</label>
+                    <input type="text" id="isAv" name="isAv"/>
+
+
+                    <label>Доступна ? </label>
+                    <input type="text" id="isD" name="isD"/> <br>
+                    <label>Ціна за годину:</label>
+                    <input type="text" id="autoPH" name="autoPH"/>
+                    <label>Назва компанії:</label>
+                    <input type="text" id="autoNC" name="autoNC"/> <br>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" id="editArmyButton" ng-click="autoCtrl.updateArmy()">Змінити
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрити</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/motorcycle.js"></script>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="js/auto.js"></script>
+
+
+</body>
+</html>

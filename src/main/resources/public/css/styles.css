@@ -1,0 +1,243 @@
+.btn-success {
+    font-weight: 700;
+    color: white;
+    text-decoration: none;
+    padding: 4px 7px;
+    border-radius: 3px;
+    background: rgb(101, 161, 199);
+    box-shadow: 0 -3px rgb(87, 137, 167) inset;
+    transition: 0.2s;
+    border-color: rgb(87, 137, 167);
+}
+.btn-success:hover { background: rgb(92, 137, 167); }
+
+.btn-success.active.focus, .btn-success.active:focus {
+    color: #fff;
+    background-color: rgb(101, 161, 199);
+    border-color: rgb(87, 137, 167);
+}
+
+.btn-success:active {
+    background: rgb(101, 161, 199);;
+    box-shadow: 0 3px rgb(101, 161, 199) inset;
+}
+
+.btn-success:focus{
+    background: rgb(101, 161, 199);
+}
+
+.btn-success:checked{
+    background: rgb(101, 161, 199);
+}
+
+.btn-success:target{
+    background: rgb(101, 161, 199);
+}
+
+.row {
+    margin-top: 10px;
+}
+
+.btn-warning {
+    width: 40px;
+    font-size: 24px;
+    text-align: center;
+}
+
+.btn-danger {
+    width: 40px;
+    padding-bottom: 2px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.panel-heading {
+    text-align: center;
+}
+
+.container{
+    margin-top: 5px;
+}
+
+.headerWidth{
+    width: 100px;
+}
+
+#menuDiv{
+    width: 50px;
+    background-color: #FFF;
+    color: #000;
+}
+
+.dropbtn {
+    width: 200px;
+    position: relative;
+    display: inline-block;
+    font-size: 90%;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    text-shadow: 0 -1px 2px rgba(0,0,0,.2);
+    padding: 10px 80px;
+    outline: none;
+    border-radius: 3px;
+    background: linear-gradient(rgb(53, 80, 168), rgb(88, 123, 209)) rgb(150, 170, 209);
+    transition: .2s ease-in-out;
+}
+.dropbtn:hover:not(:active) {
+    background: linear-gradient(rgb(107, 140, 209), rgb(66, 92, 168)) rgb(53, 80, 168);
+}
+.dropbtn:active {
+    top: 1px;
+    background: linear-gradient(rgb(66, 92, 168), rgb(53, 80, 168)) rgb(66, 92, 168);
+    box-shadow:
+            0 0 1px rgba(0,0,0,.5) inset,
+            0 2px 3px rgba(0,0,0,.5) inset,
+            0 1px 1px rgba(255,255,255,.1);
+}
+
+a.button {
+    position: relative;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    text-shadow: -1px -1px #294da8;
+    user-select: none;
+    padding: .8em 2em;
+    outline: none;
+    background-color: #294da8;
+    background-image: linear-gradient(45deg, rgba(255,255,255,.0) 50%, rgba(255,255,255,.8), rgba(255,255,255,.0) 70%), radial-gradient(190% 100% at 50% 0%, rgba(255,255,255,.7) 0%, rgba(255,255,255,.5) 50%, rgba(0,0,0,0) 50%);
+    background-repeat: no-repeat;
+    background-size: 200% 100%, auto;
+    background-position: 200% 0, 0 0;
+    box-shadow: rgba(41, 77, 168, 0.3) 0 2px 5px;
+}
+
+a.button:active {
+    top: 1px;
+    box-shadow: none;
+}
+a.button:hover {
+    transition: .5s linear;
+    background-position: -200% 0, 0 0;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    width: 200px;
+    display: none;
+    position: absolute;
+    left: -250px;
+    background-color: #f1f1f1;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    /*background-color: #30788e;*/
+    /*background-color: #35516e;*/
+    background-color: #2c6c81;
+}
+
+#dropdownWrapper {
+    text-align: center;
+}
+
+#btnWrapper {
+    text-align: center;
+}
+/*
+#navigationList a{
+    font: 14px Arial;
+    color: #FFF;
+    text-decoration:none;
+}
+#navigationList li{
+    float: left;
+    list-style-type: none;
+    margin-right: 30px;
+    margin-bottom: 10px
+}*/
+
+.modal-header{
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid #3c608f;
+    background-color: #5673b0;
+    color: #FFF;
+}
+
+.modal-header .close{
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #FFF;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .5;
+}
+
+.modal-body {
+    text-align: center;
+}
+
+.modal-body input{
+    padding-left: 2px;
+}
+
+.modal-body select{
+    width: 100%
+}
+
+.modal-header .close:hover{
+    color: #000;
+}
+
+.modal-body input{
+    width: 100%
+}
+
+.error{
+    display: block;
+    color: #c00000;
+    text-align: left;
+    font-size: 14px;
+    padding-top: 3px;
+    margin-bottom: 3px;
+}
+
+.error .cinemamovie{
+    display: block;
+    color: #c00000;
+    text-align: left;
+    font-size: 14px;
+    padding-top: 3px;
+    margin-bottom: 3px;
+}
+
+.genres{
+    width: 175px;
+}
+
+.selectImpresario{
+    width: 220px;
+}
