@@ -23,11 +23,4 @@ public class Motorcycle extends Vehicle {
     @Enumerated(EnumType.STRING)
     private MotorcycleModel model;
 
-    @ManyToOne
-    @JoinColumn(nullable =false, name = "company_id")
-    private Company company;
-
-    @OneToOne(mappedBy = "motorcycle")
-    private CompanyHistory companyHistory;
-
 }

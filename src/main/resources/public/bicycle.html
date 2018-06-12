@@ -2,34 +2,29 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Дизлокації військових частин</title>
+    <title>Мотоцикли</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 
 </head>
 <body ng-app = "demo">
 <div class="container" ng-controller = "DislocationCtrl as dislocationCtrl">
-    <div id="dropdownWrapper">
-        <div class="dropdown">
-            <button class="dropbtn" style="margin-left: 0">Запити</button>
-            <div style="min-width: 700px;" class="dropdown-content">
-                <a href="" data-toggle="modal" data-target="#selectByBase">Перелік місць дизлокації для вказаної військової частини</a>
-                <a href="" data-toggle="modal" data-target="#selectByArmy">Перелік місць дизлокації для вказаної армії</a>
-                <a href="" data-toggle="modal" data-target="#selectByDivision">Перелік місць дизлокації для вказаної дивізії</a>
-                <a href="" data-toggle="modal" data-target="#selectByCorps">Перелік місць дизлокації для вказаного корпусу</a>
-            </div>
-        </div>
-    </div>
     <div class="row">
         <div class="col-md12">
             <div class="panel panel-default">
-                <div class="panel-heading">Дизлокації частин</div>
+                <div class="panel-heading">Мотоцикли</div>
                 <div class="panel-body">
                     <table class="table table-striped">
                         <thead>
                         <tr>
-                            <th>Військова частина</th>
-                            <th>Місце дизлокації</th>
+                            <th>&#128273ІД</th>
+                            <th>Назва</th>
+                            <th>Опис</th>
+                            <th>Ціна</th>
+                            <th>Нова</th>
+                            <th>Доступна</th>
+                            <th>Ціна за годину</th>
+                            <th>Назва компанії</th>
                             <th width="30px"><button type="button" class="btn-success" data-toggle="modal" data-target="#addModal" style="align-self:center">+</button></th>
                         </tr>
                         </thead>
@@ -37,8 +32,14 @@
                         <tbody>
 
                         <tr ng-repeat = "item in dislocation">
-                            <td>{{item.militaryBase.name}}</td>
-                            <td>{{item.dislocation.name}}</td>
+                            <td>{{item.id}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.description}}</td>
+                            <td>{{item.rentPrice}}</td>
+                            <td>{{item.isNew}}</td>
+                            <td>{{item.isAvailable}}</td>
+                            <td>{{item.hours}}</td>
+                            <td>{{item.company.name}}</td>
                             <td>
                                 <button id="update" ng-click="dislocationCtrl.startUpdate(item.id, item.militaryBase.id, item.dislocation.id)" class="btn-warning" data-toggle="modal" data-target="#editModal">✎</button>
                                 <button id="delete" ng-click="dislocationCtrl.del(item.id)" class="btn-danger">✘</button>

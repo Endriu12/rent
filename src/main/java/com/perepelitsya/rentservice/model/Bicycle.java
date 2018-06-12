@@ -22,11 +22,4 @@ public class Bicycle extends Vehicle {
     @Enumerated(EnumType.STRING)
     private BicycleModel model;
 
-    @ManyToOne
-    @JoinColumn(nullable =false, name = "company_id")
-    private Company company;
-
-    @OneToOne(mappedBy = "bicycle")
-    private CompanyHistory companyHistory;
-
 }

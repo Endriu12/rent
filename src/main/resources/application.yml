@@ -6,7 +6,6 @@ spring:
     password: root
   jpa:
       show-sql: true
-      format-sql: true
       hibernate:
         ddl-auto: update
       properties:

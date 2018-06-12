@@ -22,5 +22,4 @@ public class Auto extends Vehicle {
     @Enumerated(EnumType.STRING)
     private AutoModel model;
 
-
 }
